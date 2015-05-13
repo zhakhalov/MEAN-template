@@ -16,7 +16,7 @@ module.exports = function (router) {
       if (err) {
          next(err);
        } else {
-         res.send(docs.toObject());
+         res.send(docs);
        }
     });
   })

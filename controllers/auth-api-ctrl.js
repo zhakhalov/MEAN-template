@@ -22,7 +22,7 @@ module.exports = function (router) {
    * Sign Up new User.
    * req.body = UserModel
    */
-  .post('auth/signup', function (req, res, next) {
+  .post('/auth/signup', function (req, res, next) {
     security.signUp(req.body, function (err, data) {
       if (err) {
         next(err);

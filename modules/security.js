@@ -40,7 +40,7 @@ function signIn (credentials, fn) {
  * @return {String} Authorization token.
  */
 function signUp (user, fn) {
-  UserModel.findOne({ $or: [{ username: user.email }, { email: user.email }] }, function (err, doc) {
+  UserModel.findOne({ $or: [{ username: user.username }, { email: user.email }] }, function (err, doc) {
     if (err) {
       fn(err);
     } else if (doc) {

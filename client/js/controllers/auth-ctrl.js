@@ -13,7 +13,7 @@
       });
       // ------------------ buttons
       $scope.showModal = function () {
-        self.modal = $modal.open({ templateUrl: 'authModal.html', size: 'sm' });
+        self.modal = $modal.open({ templateUrl: 'templates/auth-modal.html', size: 'sm' });
       };
       $scope.signOut = function () {
         AuthSvc.signOut();
@@ -21,8 +21,8 @@
       };
     }])
     // --------------------------- SignInCtrl ---------------------------
-  .controller('SignInCtrl', ['$scope', '$rootScope', 'AuthSvc', 'IoSvc',
-    function ($scope, $rootScope, AuthSvc, IoSvc) {
+  .controller('SignInCtrl', ['$scope', '$rootScope', 'AuthSvc',
+    function ($scope, $rootScope, AuthSvc) {
       $scope.loginErr = false;
       $scope.pending = false;
       // ------------------ buttons

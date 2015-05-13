@@ -38,7 +38,7 @@
          */
         self.signUp = function (user, success, error) {
           return $q(function (resolve, reject) {
-            $http.post(REST_API_ROUTE + 'auth/signup', { user: user })
+            $http.post(REST_API_ROUTE + 'auth/signup', user)
             .success(function (res) {
               if (typeof success === 'function') {
                 success(res);

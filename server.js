@@ -17,6 +17,7 @@ var winston = require('winston');
 //-----------------------------------------------------------------
 
 var dbCfg = require('./config/db-cfg');
+var commonCfg = require('./config/common-cfg');
 
 //-----------------------------------------------------------------
 // controllers
@@ -34,11 +35,12 @@ var ErrCtrl = require('./controllers/err-api-ctrl');
 
 var app = express();
 var apiRouter = express.Router();
-app.use('/api', apiRouter);
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use('/api', apiRouter);
 
 var server = http.createServer(app);
 // -----  controllers
@@ -49,7 +51,7 @@ ErrCtrl(apiRouter);
 
 // -----  logger
 
-winston.add(winston.transports.File, { filename: path.join(__dirname, 'log.log') });
+winston.add(winston.transports.File, { filename: path.join(__dirname, commonCfg.logFileName) });
 
 //-----------------------------------------------------------------
 // start app
