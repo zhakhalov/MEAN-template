@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <title></title>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="AuthCtrl">
+      <span class="btn btn-default" ng-show="pending" disabled><i class="fa fa-spinner fa-pulse"></i> </span>
+      <div ng-hide="pending">
+        <button class="btn btn-success" ng-hide="isAuthenticated" ng-click="showModal()">Sign In / Sign Up</button>
+        <button class="btn btn-default" ng-show="isAuthenticated" ng-click="signOut()">Sign Out</button>
+      </div>
+    </div>
+  </body>
+</html>
