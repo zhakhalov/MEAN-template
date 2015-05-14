@@ -35,9 +35,33 @@
         });
       };
       /**
+       * Validates unique username or email async
+       * @param login {String} User's username or email.
+       * @param success {Function} Success callback.
+       * @param error {Function} Error callback.
+       * @return {Promise}
+       */
+      self.checkLogin = function (login, success, error) {
+        return $q(function (resolve, reject) {
+          $http.get(REST_API_ROUTE + 'users/exists?login=' + login)
+          .success(function (data) {
+            if (typeof success === 'function') {
+                success(data);
+              }
+              resolve(data);
+          })
+          .error(function (err) {
+             if (typeof error === 'function') {
+                error(err);
+              }
+              reject(err);
+          });
+        });
+      };
+      /**
        * Gets/Sets current user.
        * @param user current user.
-       * @returns {Object} Current user.
+       * @return {Object} Current user.
        */
       self.user = function (user) {
         if ('undefined' === typeof user) { return _users[_userId]; }

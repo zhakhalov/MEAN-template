@@ -11,6 +11,15 @@ module.exports = function (router) {
       }
     });
   })
+  .get('/users/exists', function (req, res, next) {
+     UserModel.findOne({ $or: [{ username: req.query.login }, { email: req.query.login }] }, function (err, doc) {
+       if (err) {
+         next(err);
+       } else {
+         res.send(null != doc);
+       }
+     });
+  })
   .get('/users', function (req, res, next) {
     UserModel.find(req.query).lean().exec(function (err, docs) {
       if (err) {
@@ -29,13 +38,4 @@ module.exports = function (router) {
        }
     });
   })
-  .get('/users/exists/:login', function (req, res, next) {
-     UserModel.findOne({ $or: [{ username: req.params.login }, { email: req.params.login }] }, function (err, doc) {
-       if (err) {
-         next(err);
-       } else {
-         res.send(null != doc);
-       }
-     });
-  });
 };
